@@ -1,9 +1,9 @@
 <script setup lang="ts">
-console.log("mca");
+import Board from "./components/Board.vue";
 </script>
 
 <template>
-  <div>Mca</div>
+  <Board />
 </template>
 
 <style scoped></style>
