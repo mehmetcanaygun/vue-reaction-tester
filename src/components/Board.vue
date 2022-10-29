@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 import Shape from "./Shape.vue";
+import ScoreAndTime from "./ScoreAndTime.vue";
+import StartAndEnd from "./StartAndEnd.vue";
 import { ShapeData, GameStatus } from "../types/index";
 import {
   SHAPES,
@@ -70,39 +72,21 @@ watch(timeLeft, (data, prevData) => {
 
 <template>
   <div class="w-screen h-screen bg-slate-900 relative overflow-hidden">
+    <!-- Score & Time -->
+    <ScoreAndTime :score="score" :timeLeft="timeLeft" />
+
+    <!-- Start & End messages and button -->
+    <StartAndEnd
+      :gameStatus="gameStatus"
+      :score="score"
+      :handleStart="handleStart"
+    />
+
     <Shape
       v-if="gameStatus === GameStatusEnum.Ongoing"
       :shapeData="shapeData"
       :key="shapeData.color"
       @click="handleClick"
     />
-
-    <!-- Score -->
-    <div class="text-slate-600 text-8xl flex justify-between px-4">
-      <p>{{ score }}</p>
-      <p>{{ timeLeft }}</p>
-    </div>
-
-    <!-- Start & End buttons -->
-    <div
-      class="absolute top-1/2 left-1/2 text-slate-300 -translate-x-1/2 -translate-y-1/2 text-center"
-    >
-      <p v-if="gameStatus === GameStatusEnum.Start">
-        Try to click on as many as shapes you can in {{ TIME_LIMIT }} seconds!
-      </p>
-      <p v-if="gameStatus === GameStatusEnum.End">
-        You've clicked on {{ score }} shapes!
-      </p>
-      <button
-        v-if="
-          gameStatus === GameStatusEnum.Start ||
-          gameStatus === GameStatusEnum.End
-        "
-        @click="handleStart"
-        class="mt-4 text-sky-600 cursor-pointer"
-      >
-        {{ gameStatus === GameStatusEnum.Start ? "Start" : "Play Again" }}
-      </button>
-    </div>
   </div>
 </template>
