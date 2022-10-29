@@ -4,3 +4,9 @@ export enum ShapeEnum {
   Circle = "circle",
   Triangle = "triangle"
 }
+
+export enum GameStatusEnum {
+  Start = "start",
+  Ongoing = "ongoing",
+  End = "end"
+}

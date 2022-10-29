@@ -5,3 +5,5 @@ export type ShapeData = {
   rotation: number;
   position: number[];
 }
+
+export type GameStatus = "start" | "ongoing" | "end";

@@ -22,7 +22,7 @@ const sharedStyles = {
 
 <template>
   <div
-    class="absolute"
+    class="absolute z-20"
     :style="{
       top: `${position[1]}px`,
       left: `${position[0]}px`,
